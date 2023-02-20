@@ -7,3 +7,17 @@
 .wp-block-cb-cb-instructors {
 	border: 1px dotted #f00;
 }
+
+.wp-block-cb-instructors-cb-instructors {
+  padding: 4px;
+}
+
+.wp-block-cb-instructors-block-cb-instructors-block {
+  &.is-style-default{
+	background-color: #FFE2C7;
+  }
+  &.is-style-border{
+
+	background-color: #F6F6F6;
+  }
+}
