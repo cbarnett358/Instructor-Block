@@ -4,7 +4,6 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
-import {isBlobURL} from '@wordpress/blob';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -19,8 +18,8 @@ import {
 	BlockControls,
 	InspectorControls,
 	PanelColorSettings,
-	MediaPlaceholder
-
+	MediaUpload,
+	MediaUploadCheck
 
 } from '@wordpress/block-editor';
 import {
@@ -80,16 +79,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	const toggleNofollow = () => {
 		setAttributes( { hasLinkNofollow: ! hasLinkNofollow } )
 	}
-	const onSelectImage = (image) => {
-		if(!image || !image.url) {
-			setAttributes({url: undefined, id: undefined, alt: ''});
-			return;
-		}
-		setAttributes( {url: image.url, id: image.id, alt: image.alt});
 
-	};
 	return (
-		<>
+		<div{...blockProps}>
 
 			<InspectorControls>
 				<PanelColorSettings
@@ -156,22 +148,17 @@ export default function Edit( { attributes, setAttributes } ) {
 					onChange={ onChangeAlign }
 				/>
 			</BlockControls>
-				<div{ ...blockProps }>
-					{url && <div className={`wp-block-cb-cb-testimonial`}>
-						<img src={url} alt={alt}/></div>}
-
-					<MediaPlaceholder
-					icon="admin-users"
-					onSelect={(val) => console.log(val) }
-					onSelectURL={(val) => console.log(val) }
-					onError={(err) => console.log(err) }
-					accept="image/*"
-					allowedTypes={['image']}
-					disableMediaButtons={url}
-
-
-
-					/>
+				<div>
+					<div className="photo">
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={ ( img ) => setAttributes({imgUrl: img.sizes.thumbnail ? img.sizes.thumbnail.url : img.sizes.full.url})}
+								allowedTypes={ 'image' }
+								render={ ( { open } ) => (
+									<img src={attributes.imgUrl} onClick={ open } height={100} width={100}/>
+								) }
+							/>
+						</MediaUploadCheck>
 
 
 					<RichText
@@ -191,6 +178,8 @@ export default function Edit( { attributes, setAttributes } ) {
 						{ linkLabel }
 					</ExternalLink>
 				</div>
-		</>
+				</div>
+
+		</div>
 	);
 }

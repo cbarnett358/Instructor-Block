@@ -28,13 +28,14 @@ export default function save( { attributes } ) {
 			{ ...blockProps }
 			style={ { backgroundColor: backgroundColor } }
 		>
-			{url && <img src={url} alt={alt} /> }
-			<RichText.Content
-				tagName="p"
-				value={ content }
-				style={ { color: textColor } }
-			/>
+			<div className="photo">
+				<img src={attributes.imgUrl} alt={"Photo of ______"}/>
+
+
+			</div>
+
 			<p>
+
 				<a
 					href={ cbLink }
 					className="cb-button"

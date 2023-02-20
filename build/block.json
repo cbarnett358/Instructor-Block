@@ -38,6 +38,10 @@
         "type": "string",
         "default": ""
       },
+      "imgUrl": {
+        "type": "string",
+        "default": "https://placehold.it/150"
+      },
       "linkLabel": {
         "type": "string",
         "default": "Check it out!"

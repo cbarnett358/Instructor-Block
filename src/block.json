@@ -18,12 +18,14 @@
      "attributes": {
 	 "content": {
 	   "type": "string",
-	  "source": "html",
-	  "selector": "p",
+	   "source": "html",
+	   "selector": "p",
 	   "align": {
 		 "type": "string",
 		 "default": "none"
-	   },
+	   }
+	 }
+
 	   "backgroundColor": {
 		 "type": "string"
 	   },
@@ -34,6 +36,10 @@
 	   "cbLink": {
 		 "type": "string",
 		 "default": ""
+	   },
+	   "imgUrl": {
+		 "type": "string",
+		 "default": "https://placehold.it/150"
 	   },
 	   "linkLabel": {
 		 "type": "string",
@@ -55,6 +61,6 @@
 		 }
 	   ]
 	 }
-	 }
+
   }
 
